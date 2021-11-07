@@ -1,1 +1,1 @@
-# terminal-kanban
+# kanban-shell
