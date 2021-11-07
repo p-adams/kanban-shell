@@ -1,19 +1,9 @@
-class KanbanBoard {
-  columns;
-  constructor() {
-    this.columns = new Map();
-  }
-  createTicket(title, description) {}
-  updateTicket(id, editField) {}
-  readTicket(id) {}
-  deleteTicket(id) {}
-  moveTicket(fromColumn, toColumn) {}
-  drawBoard() {}
-}
-
+import { KanbanBoard } from "./modules/KanbanBoard.js";
 function main() {
   const kanbanBoard = new KanbanBoard();
-  console.log(kanbanBoard.drawBoard());
+  console.log("meow");
 }
 
-window.onload = main;
+// window.onload = main;
+
+export default main;
