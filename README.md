@@ -2,6 +2,10 @@
 
 ### Getting Started
 
+Requirements:
+
+Deno `^1.15.3`
+
 To run locally:
 
 `$ deno install --allow-net --allow-read https://deno.land/std@0.113.0/http/file_server.ts`
