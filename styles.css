@@ -65,6 +65,8 @@ section {
 }
 
 .menu {
+  display: flex;
+  flex-direction: column;
   visibility: hidden;
   border: 1px dashed var(--primary-text);
   margin-top: 10px;
@@ -72,7 +74,6 @@ section {
 }
 .menu ul {
   display: flex;
-  width: 100%;
   height: 25px;
   border-bottom: 1px dashed var(--primary-text);
   padding: 8px;
@@ -81,6 +82,34 @@ section {
 .menu ul li {
   margin-right: 10px;
   text-transform: capitalize;
+}
+
+.menu article h4 {
+  font-size: 34px;
+}
+
+.menu article h3 {
+  font-size: 48px;
+}
+svg {
+  width: 100%;
+}
+
+text {
+  text-transform: uppercase;
+  fill: none;
+  stroke: var(--primary-text);
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-dasharray: 3 1;
+}
+
+.sub-title {
+  height: 120px;
+}
+
+.main-title {
+  height: 160px;
 }
 
 .close,
