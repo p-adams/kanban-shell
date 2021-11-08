@@ -1,7 +1,7 @@
 import { KanbanBoard } from "./modules/KanbanBoard.js";
 
 function main() {
-  const kanbanBoard = new KanbanBoard();
+  // const kanbanBoard = new KanbanBoard();
 
   const input = document.querySelector(".input-prompt");
   const menu = document.querySelector(".menu");

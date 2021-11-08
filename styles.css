@@ -66,6 +66,18 @@ section {
 
 .menu {
   visibility: hidden;
+  border: 1px dashed var(--primary-text);
+  margin-top: 10px;
+  height: calc(var(--terminal-height) - 120px);
+  padding: 6px;
+}
+.menu ul {
+  display: flex;
+  width: 100%;
+}
+
+.menu ul li {
+  margin-right: 10px;
 }
 
 .close,
