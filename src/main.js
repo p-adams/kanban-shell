@@ -14,6 +14,10 @@ function main() {
       menu.style.visibility = "hidden";
     }
   });
+  const menuItems = document.querySelector(".menu ul");
+  menuItems.addEventListener("keydown", (e) => {
+    console.log("keydown");
+  });
 }
 
 export default main;

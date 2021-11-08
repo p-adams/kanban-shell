@@ -69,15 +69,18 @@ section {
   border: 1px dashed var(--primary-text);
   margin-top: 10px;
   height: calc(var(--terminal-height) - 120px);
-  padding: 6px;
 }
 .menu ul {
   display: flex;
   width: 100%;
+  height: 25px;
+  border-bottom: 1px dashed var(--primary-text);
+  padding: 8px;
 }
 
 .menu ul li {
   margin-right: 10px;
+  text-transform: capitalize;
 }
 
 .close,
