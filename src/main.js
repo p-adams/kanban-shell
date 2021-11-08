@@ -2,7 +2,6 @@ import { KanbanBoard } from "./modules/KanbanBoard.js";
 
 // const kanbanBoard = new KanbanBoard();
 const input = document.querySelector(".input-prompt");
-console.log(input);
 const menu = document.querySelector(".menu");
 // menu.style.visibility = "visible";
 input.addEventListener("change", (e) => {
