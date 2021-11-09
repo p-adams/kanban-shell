@@ -6,8 +6,14 @@ function main() {
   const input = document.querySelector(".input-prompt");
   const menu = document.querySelector(".menu");
   const menuItems = document.querySelector(".menu ul");
-  handleInput(input, menu, menuItems);
-  handleMenuNavigation(menuItems);
+  const homeScreen = document.querySelector(".menu #home-screen");
+  const boardsScreen = document.querySelector(".menu #boards-screen");
+  const helpScreen = document.querySelector(".menu #help-screen");
+  handleInput(input, menu, menuItems, (prompt) => {
+    if (prompt) {
+      handleMenuNavigation(menuItems, [homeScreen, boardsScreen, helpScreen]);
+    }
+  });
 }
 
 export default main;

@@ -1,4 +1,4 @@
-export function handleInput(input, menu, menuItems) {
+export function handleInput(input, menu, menuItems, cb) {
   input.value = "";
   input.addEventListener("change", (e) => {
     const prompt = e.target.value;
@@ -12,5 +12,6 @@ export function handleInput(input, menu, menuItems) {
         menu.style.visibility = "hidden";
         break;
     }
+    cb(prompt);
   });
 }
