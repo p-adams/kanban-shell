@@ -84,6 +84,11 @@ section {
   text-transform: capitalize;
 }
 
+.menu ul li.active {
+  background: var(--primary-text);
+  color: blue;
+}
+
 .menu article h4 {
   font-size: 34px;
 }
