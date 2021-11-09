@@ -94,15 +94,26 @@ section {
 }
 
 .active-screen {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.active-screen h3 {
+  font-size: 12px;
+}
+
+#boards-screen,
+#help-screen {
+  padding: 10px;
 }
 
 .menu article h4 {
-  font-size: 34px;
+  font-size: 14px;
 }
 
 .menu article h3 {
-  font-size: 48px;
+  font-size: 18px;
 }
 svg {
   width: 100%;
@@ -118,11 +129,11 @@ text {
 }
 
 .sub-title {
-  height: 120px;
+  height: 100px;
 }
 
 .main-title {
-  height: 160px;
+  height: 120px;
 }
 
 .close,
