@@ -70,7 +70,7 @@ section {
   visibility: hidden;
   border: 1px dashed var(--primary-text);
   margin-top: 10px;
-  height: calc(var(--terminal-height) - 120px);
+  height: calc(var(--terminal-height) - 100px);
 }
 .menu ul {
   display: flex;
@@ -93,6 +93,9 @@ section {
   display: none;
 }
 
+article {
+  height: 100%;
+}
 .active-screen {
   display: flex;
   flex-direction: column;
@@ -119,6 +122,23 @@ svg {
   width: 100%;
 }
 
+.col-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  margin: 10px;
+  height: 100%;
+  grid-gap: 4px;
+}
+
+.col-container .col {
+  border: 1px dashed var(--primary-text);
+}
+
+.legend {
+  background-color: var(--primary-text);
+  height: 80px;
+  color: blue;
+}
 text {
   text-transform: uppercase;
   fill: none;
