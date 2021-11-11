@@ -1,16 +1,16 @@
-export function handleInput(input, menu, menuItems) {
+export function handleInput(input, el, elItems) {
   return new Promise((resolve, reject) => {
     input.value = "";
     input.addEventListener("change", (e) => {
       const prompt = e.target.value;
       switch (prompt.toUpperCase()) {
         case "MENU":
-          menu.style.visibility = "visible";
+          el.style.visibility = "visible";
           input.blur();
-          menuItems.focus();
+          elItems.focus();
           break;
         default:
-          menu.style.visibility = "hidden";
+          el.style.visibility = "hidden";
           break;
       }
       resolve(prompt);
