@@ -6,6 +6,9 @@ import * as ReactDom from "react-dom";
 import * as Belt_Option from "rescript/lib/es6/belt_Option.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
+import '../styles.css'
+;
+
 ReactDom.render(React.createElement(App.make, {}), Belt_Option.getExn(Caml_option.nullable_to_opt(document.querySelector("#app"))));
 
 export {

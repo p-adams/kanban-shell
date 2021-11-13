@@ -1,4 +1,5 @@
 node_modules
 lib
 .merlin
-.bsb-lock
+.bsb.lock
+.DS_Store
