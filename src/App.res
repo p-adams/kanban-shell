@@ -2,19 +2,19 @@
 let make = () => {
   let (prompt, setPrompt) = React.useState(_ => "")
   let (commandErrors, setCommandErrors) = React.useState(_ => "")
-  let (isMenuActive, setIsMenuActive) = React.useState(_ => false)
+  let (currentShellTab, setCurrentShellTab) = React.useState(_ => "")
   let onSubmit = e => {
     ReactEvent.Form.preventDefault(e)
 
     switch prompt->Js.String2.toUpperCase {
-    | "MENU" => setIsMenuActive(_ => true)
+    | "MENU" => setCurrentShellTab(_ => "MENU")
     | _ => setCommandErrors(_ => "invalid command")
     }
   }
 
   let handleChange = e => {
     setPrompt(ReactEvent.Form.target(e)["value"])
-    setIsMenuActive(_ => false)
+    setCurrentShellTab(_ => "")
     setCommandErrors(_ => "")
   }
 
@@ -38,7 +38,7 @@ let make = () => {
         </div>
         {Js.String.length(commandErrors) > 0 ? <div> {React.string(commandErrors)} </div> : <> </>}
       </section>
-      {isMenuActive
+      {currentShellTab === "MENU"
         ? <section className="menu">
             <ul tabIndex={0}>
               <li> {React.string("home")} </li>

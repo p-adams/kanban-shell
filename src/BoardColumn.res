@@ -1,4 +1,4 @@
 @react.component
 let make = (~title) => {
-  <div> {React.string(title)} </div>
+  <div> <h2> {React.string(title)} </h2> </div>
 }

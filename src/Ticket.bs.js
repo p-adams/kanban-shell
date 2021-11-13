@@ -2,12 +2,12 @@
 
 import * as React from "react";
 
-function BoardColumn(Props) {
+function Ticket(Props) {
   var title = Props.title;
-  return React.createElement("div", undefined, React.createElement("h2", undefined, title));
+  return React.createElement("div", undefined, React.createElement("h3", undefined, title));
 }
 
-var make = BoardColumn;
+var make = Ticket;
 
 export {
   make ,

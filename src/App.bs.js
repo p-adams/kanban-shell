@@ -16,9 +16,9 @@ function App(Props) {
   var setCommandErrors = match$1[1];
   var commandErrors = match$1[0];
   var match$2 = React.useState(function () {
-        return false;
+        return "";
       });
-  var setIsMenuActive = match$2[1];
+  var setCurrentShellTab = match$2[1];
   return React.createElement("div", {
               className: "terminal"
             }, React.createElement("header", undefined, React.createElement("div", undefined, React.createElement("span", {
@@ -38,8 +38,8 @@ function App(Props) {
                                   e.preventDefault();
                                   var match = prompt.toUpperCase();
                                   if (match === "MENU") {
-                                    return Curry._1(setIsMenuActive, (function (param) {
-                                                  return true;
+                                    return Curry._1(setCurrentShellTab, (function (param) {
+                                                  return "MENU";
                                                 }));
                                   } else {
                                     return Curry._1(setCommandErrors, (function (param) {
@@ -53,14 +53,14 @@ function App(Props) {
                                   value: prompt,
                                   onChange: (function (e) {
                                       Curry._1(setPrompt, e.target.value);
-                                      Curry._1(setIsMenuActive, (function (param) {
-                                              return false;
+                                      Curry._1(setCurrentShellTab, (function (param) {
+                                              return "";
                                             }));
                                       return Curry._1(setCommandErrors, (function (param) {
                                                     return "";
                                                   }));
                                     })
-                                }))), commandErrors.length > 0 ? React.createElement("div", undefined, commandErrors) : React.createElement(React.Fragment, undefined)), match$2[0] ? React.createElement("section", {
+                                }))), commandErrors.length > 0 ? React.createElement("div", undefined, commandErrors) : React.createElement(React.Fragment, undefined)), match$2[0] === "MENU" ? React.createElement("section", {
                         className: "menu"
                       }, React.createElement("ul", {
                             tabIndex: 0
