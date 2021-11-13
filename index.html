@@ -1,66 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="styles.css" rel="stylesheet" />
-    <script type="module" src="./src/modules/components.js" defer></script>
-    <title>Kanban Terminal</title>
+    <title>Vite App</title>
   </head>
   <body>
-    <div class="terminal">
-      <header>
-        <div>
-          <span class="close"></span>
-          <span class="min"></span>
-          <span class="max"></span>
-        </div>
-        <h3 class="terminal-title">Kanban Shell</h3>
-      </header>
-      <main>
-        <section>
-          <span>IP address @:</span><input class="input-prompt" autofocus />
-        </section>
-        <section class="menu">
-          <ul tabindex="0">
-            <li>home</li>
-            <li>boards</li>
-            <li>help</li>
-          </ul>
-          <article id="home-screen" class="shell-screen">
-            <svg viewBox="0 0 125 60" class="sub-title">
-              <text y="20">Welcome To</text>
-            </svg>
-
-            <svg viewBox="0 0 125 40" class="main-title">
-              <text y="15">Kanban Shell</text>
-            </svg>
-          </article>
-          <article id="boards-screen" class="shell-screen">
-            <div class="col-container">
-              <div class="col ice-box">
-                <board-column title="Ice Box" />
-              </div>
-              <div class="col in-progress">
-                <board-column title="In Progress" />
-              </div>
-              <div class="col done">
-                <board-column title="Done" />
-              </div>
-            </div>
-          </article>
-          <article id="help-screen" class="shell-screen">
-            <h3>Help</h3>
-          </article>
-          <div class="legend">
-            <!-- navigation legend -->
-          </div>
-        </section>
-      </main>
-      <script type="module">
-        import main from "./src/main.js";
-        window.onload = main;
-      </script>
-    </div>
+    <div id="app"></div>
+    <script type="module" src="/src/Main.bs.js"></script>
   </body>
 </html>

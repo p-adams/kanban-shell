@@ -1,0 +1,16 @@
+{
+  "name": "terminal-shell-2",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite & rescript build -w",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "rescript": "^9.1.4",
+    "vite": "^2.6.4"
+  },
+  "dependencies": {
+    "@rescript/react": "^0.10.3"
+  }
+}

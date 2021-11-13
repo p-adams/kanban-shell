@@ -1,1 +1,4 @@
-terminal-kanban
+node_modules
+lib
+.merlin
+.bsb-lock
