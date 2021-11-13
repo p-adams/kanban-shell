@@ -1,5 +1,10 @@
 @react.component
 let make = () => {
+  let (prompt, setPrompt) = React.useState(_ => "")
+  let onSubmit = e => {
+    ReactEvent.Form.preventDefault(e)
+    Js.log(prompt)
+  }
   <div className="terminal">
     <header>
       <div> <span className="close" /> <span className="min" /> <span className="max" /> </div>
@@ -8,7 +13,14 @@ let make = () => {
     <main>
       <section>
         <span> {React.string("IP address @:")} </span>
-        <input className="input-prompt" autoFocus={true} />
+        <form onSubmit={e => onSubmit(e)}>
+          <input
+            className="input-prompt"
+            value={prompt}
+            autoFocus={true}
+            onChange={e => setPrompt(ReactEvent.Form.target(e)["value"])}
+          />
+        </form>
       </section>
       <section className="menu">
         <ul tabIndex={0}>
