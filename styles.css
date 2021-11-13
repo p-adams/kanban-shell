@@ -66,10 +66,18 @@ section {
   color: var(--primary-text);
 }
 
+.prompt {
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt .wrapper {
+  display: flex;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
-  visibility: hidden;
   border: 1px dashed var(--primary-text);
   margin-top: 10px;
   height: calc(var(--terminal-height) - 100px);

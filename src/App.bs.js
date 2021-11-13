@@ -10,6 +10,15 @@ function App(Props) {
       });
   var setPrompt = match[1];
   var prompt = match[0];
+  var match$1 = React.useState(function () {
+        return "";
+      });
+  var setCommandErrors = match$1[1];
+  var commandErrors = match$1[0];
+  var match$2 = React.useState(function () {
+        return false;
+      });
+  var setIsMenuActive = match$2[1];
   return React.createElement("div", {
               className: "terminal"
             }, React.createElement("header", undefined, React.createElement("div", undefined, React.createElement("span", {
@@ -20,59 +29,77 @@ function App(Props) {
                           className: "max"
                         })), React.createElement("h3", {
                       className: "terminal-title"
-                    }, "Kanban Shell")), React.createElement("main", undefined, React.createElement("section", undefined, React.createElement("span", undefined, "IP address @:"), React.createElement("form", {
-                          onSubmit: (function (e) {
-                              e.preventDefault();
-                              console.log(prompt);
-                              
-                            })
-                        }, React.createElement("input", {
-                              className: "input-prompt",
-                              autoFocus: true,
-                              value: prompt,
-                              onChange: (function (e) {
-                                  return Curry._1(setPrompt, e.target.value);
+                    }, "Kanban Shell")), React.createElement("main", undefined, React.createElement("section", {
+                      className: "prompt"
+                    }, React.createElement("div", {
+                          className: "wrapper"
+                        }, React.createElement("span", undefined, "IP address @:"), React.createElement("form", {
+                              onSubmit: (function (e) {
+                                  e.preventDefault();
+                                  var match = prompt.toUpperCase();
+                                  if (match === "MENU") {
+                                    return Curry._1(setIsMenuActive, (function (param) {
+                                                  return true;
+                                                }));
+                                  } else {
+                                    return Curry._1(setCommandErrors, (function (param) {
+                                                  return "invalid command";
+                                                }));
+                                  }
                                 })
-                            }))), React.createElement("section", {
-                      className: "menu"
-                    }, React.createElement("ul", {
-                          tabIndex: 0
-                        }, React.createElement("li", undefined, "home"), React.createElement("li", undefined, "boards"), React.createElement("li", undefined, "help")), React.createElement("article", {
-                          className: "shell-screen",
-                          id: "home-screen"
-                        }, React.createElement("svg", {
-                              className: "sub-title",
-                              viewBox: "0 0 125 60"
-                            }, React.createElement("text", {
-                                  y: "20"
-                                }, "Welcome To")), React.createElement("svg", {
-                              className: "main-title",
-                              viewBox: "0 0 125 40"
-                            }, React.createElement("text", {
-                                  y: "15"
-                                }, "Kanban Shell"))), React.createElement("article", {
-                          className: "shell-screen",
-                          id: "boards-screen"
-                        }, React.createElement("div", {
-                              className: "col-container"
-                            }, React.createElement("div", {
-                                  className: "col ice-box"
-                                }, React.createElement(BoardColumn.make, {
-                                      title: "Ice Box"
-                                    })), React.createElement("div", {
-                                  className: "col in-progress"
-                                }, React.createElement(BoardColumn.make, {
-                                      title: "In Progress"
-                                    })), React.createElement("div", {
-                                  className: "col done"
-                                }, React.createElement(BoardColumn.make, {
-                                      title: "Done"
-                                    })))), React.createElement("article", {
-                          className: "shell-screen",
-                          id: "help-screen"
-                        }, React.createElement("h3", undefined, "Help")), React.createElement("div", {
-                          className: "legend"
-                        }))));
+                            }, React.createElement("input", {
+                                  className: "input-prompt",
+                                  autoFocus: true,
+                                  value: prompt,
+                                  onChange: (function (e) {
+                                      Curry._1(setPrompt, e.target.value);
+                                      Curry._1(setIsMenuActive, (function (param) {
+                                              return false;
+                                            }));
+                                      return Curry._1(setCommandErrors, (function (param) {
+                                                    return "";
+                                                  }));
+                                    })
+                                }))), commandErrors.length > 0 ? React.createElement("div", undefined, commandErrors) : React.createElement(React.Fragment, undefined)), match$2[0] ? React.createElement("section", {
+                        className: "menu"
+                      }, React.createElement("ul", {
+                            tabIndex: 0
+                          }, React.createElement("li", undefined, "home"), React.createElement("li", undefined, "boards"), React.createElement("li", undefined, "help")), React.createElement("article", {
+                            className: "shell-screen",
+                            id: "home-screen"
+                          }, React.createElement("svg", {
+                                className: "sub-title",
+                                viewBox: "0 0 125 60"
+                              }, React.createElement("text", {
+                                    y: "20"
+                                  }, "Welcome To")), React.createElement("svg", {
+                                className: "main-title",
+                                viewBox: "0 0 125 40"
+                              }, React.createElement("text", {
+                                    y: "15"
+                                  }, "Kanban Shell"))), React.createElement("article", {
+                            className: "shell-screen",
+                            id: "boards-screen"
+                          }, React.createElement("div", {
+                                className: "col-container"
+                              }, React.createElement("div", {
+                                    className: "col ice-box"
+                                  }, React.createElement(BoardColumn.make, {
+                                        title: "Ice Box"
+                                      })), React.createElement("div", {
+                                    className: "col in-progress"
+                                  }, React.createElement(BoardColumn.make, {
+                                        title: "In Progress"
+                                      })), React.createElement("div", {
+                                    className: "col done"
+                                  }, React.createElement(BoardColumn.make, {
+                                        title: "Done"
+                                      })))), React.createElement("article", {
+                            className: "shell-screen",
+                            id: "help-screen"
+                          }, React.createElement("h3", undefined, "Help")), React.createElement("div", {
+                            className: "legend"
+                          })) : React.createElement(React.Fragment, undefined)));
 }
 
 var make = App;
