@@ -1,24 +1,24 @@
 type shellTabs = DEFAULT | MENU | BOARDS
-
+type alertLevel = ERROR | WARNING | INFO | NONE
+type alert = {message: string, level: alertLevel}
 @react.component
 let make = () => {
   let (prompt, setPrompt) = React.useState(_ => "")
-  let (commandErrors, setCommandErrors) = React.useState(_ => "")
-  let (commandWarnings, setCommandWarnings) = React.useState(_ => "")
+  let (alert, setAlert) = React.useState(_ => {message: "", level: NONE})
   let (currentShellTab, setCurrentShellTab) = React.useState(_ => DEFAULT)
   let onSubmit = e => {
     ReactEvent.Form.preventDefault(e)
 
     switch prompt->Js.String2.toUpperCase {
     | "MENU" => setCurrentShellTab(_ => MENU)
-    | _ => setCommandErrors(_ => "invalid command")
+    | _ => setAlert(_ => {message: "invalid command", level: ERROR})
     }
   }
 
   let handleChange = e => {
     setPrompt(ReactEvent.Form.target(e)["value"])
     setCurrentShellTab(_ => DEFAULT)
-    setCommandErrors(_ => "")
+    setAlert(_ => {message: "", level: NONE})
   }
 
   <div className="terminal">
@@ -39,11 +39,14 @@ let make = () => {
             />
           </form>
         </div>
-        {Js.String.length(commandErrors) > 0 || Js.String.length(commandWarnings) > 0
-          ? <div className="prompt-feedback">
-              {React.string(commandErrors)} {React.string(commandWarnings)}
-            </div>
-          : <> </>}
+        <div className="prompt-feedback">
+          {switch alert.level {
+          | ERROR => <div className="error"> {React.string(alert.message)} </div>
+          | WARNING => <div className="warning"> {React.string(alert.message)} </div>
+          | INFO => <div className="info"> {React.string(alert.message)} </div>
+          | NONE => <> </>
+          }}
+        </div>
       </section>
       {switch currentShellTab {
       | MENU => <MenuScreen />

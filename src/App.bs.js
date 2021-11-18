@@ -12,28 +12,50 @@ function App(Props) {
   var setPrompt = match[1];
   var prompt = match[0];
   var match$1 = React.useState(function () {
-        return "";
+        return {
+                message: "",
+                level: /* NONE */3
+              };
       });
-  var setCommandErrors = match$1[1];
-  var commandErrors = match$1[0];
+  var setAlert = match$1[1];
+  var alert = match$1[0];
   var match$2 = React.useState(function () {
-        return "";
-      });
-  var commandWarnings = match$2[0];
-  var match$3 = React.useState(function () {
         return /* DEFAULT */0;
       });
-  var setCurrentShellTab = match$3[1];
+  var setCurrentShellTab = match$2[1];
+  var match$3 = alert.level;
   var tmp;
-  switch (match$3[0]) {
-    case /* DEFAULT */0 :
+  switch (match$3) {
+    case /* ERROR */0 :
+        tmp = React.createElement("div", {
+              className: "error"
+            }, alert.message);
+        break;
+    case /* WARNING */1 :
+        tmp = React.createElement("div", {
+              className: "warning"
+            }, alert.message);
+        break;
+    case /* INFO */2 :
+        tmp = React.createElement("div", {
+              className: "info"
+            }, alert.message);
+        break;
+    case /* NONE */3 :
         tmp = React.createElement(React.Fragment, undefined);
         break;
+    
+  }
+  var tmp$1;
+  switch (match$2[0]) {
+    case /* DEFAULT */0 :
+        tmp$1 = React.createElement(React.Fragment, undefined);
+        break;
     case /* MENU */1 :
-        tmp = React.createElement(MenuScreen.make, {});
+        tmp$1 = React.createElement(MenuScreen.make, {});
         break;
     case /* BOARDS */2 :
-        tmp = React.createElement(BoardsScreen.make, {});
+        tmp$1 = React.createElement(BoardsScreen.make, {});
         break;
     
   }
@@ -60,8 +82,11 @@ function App(Props) {
                                                   return /* MENU */1;
                                                 }));
                                   } else {
-                                    return Curry._1(setCommandErrors, (function (param) {
-                                                  return "invalid command";
+                                    return Curry._1(setAlert, (function (param) {
+                                                  return {
+                                                          message: "invalid command",
+                                                          level: /* ERROR */0
+                                                        };
                                                 }));
                                   }
                                 })
@@ -74,13 +99,16 @@ function App(Props) {
                                       Curry._1(setCurrentShellTab, (function (param) {
                                               return /* DEFAULT */0;
                                             }));
-                                      return Curry._1(setCommandErrors, (function (param) {
-                                                    return "";
+                                      return Curry._1(setAlert, (function (param) {
+                                                    return {
+                                                            message: "",
+                                                            level: /* NONE */3
+                                                          };
                                                   }));
                                     })
-                                }))), commandErrors.length > 0 || commandWarnings.length > 0 ? React.createElement("div", {
-                            className: "prompt-feedback"
-                          }, commandErrors, commandWarnings) : React.createElement(React.Fragment, undefined)), tmp));
+                                }))), React.createElement("div", {
+                          className: "prompt-feedback"
+                        }, tmp)), tmp$1));
 }
 
 var make = App;
