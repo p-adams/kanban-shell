@@ -1,20 +1,23 @@
+type shellTabs = DEFAULT | MENU | BOARDS
+
 @react.component
 let make = () => {
   let (prompt, setPrompt) = React.useState(_ => "")
   let (commandErrors, setCommandErrors) = React.useState(_ => "")
-  let (currentShellTab, setCurrentShellTab) = React.useState(_ => "")
+  let (commandWarnings, setCommandWarnings) = React.useState(_ => "")
+  let (currentShellTab, setCurrentShellTab) = React.useState(_ => DEFAULT)
   let onSubmit = e => {
     ReactEvent.Form.preventDefault(e)
 
     switch prompt->Js.String2.toUpperCase {
-    | "MENU" => setCurrentShellTab(_ => "MENU")
+    | "MENU" => setCurrentShellTab(_ => MENU)
     | _ => setCommandErrors(_ => "invalid command")
     }
   }
 
   let handleChange = e => {
     setPrompt(ReactEvent.Form.target(e)["value"])
-    setCurrentShellTab(_ => "")
+    setCurrentShellTab(_ => DEFAULT)
     setCommandErrors(_ => "")
   }
 
@@ -36,36 +39,17 @@ let make = () => {
             />
           </form>
         </div>
-        {Js.String.length(commandErrors) > 0 ? <div> {React.string(commandErrors)} </div> : <> </>}
+        {Js.String.length(commandErrors) > 0 || Js.String.length(commandWarnings) > 0
+          ? <div className="prompt-feedback">
+              {React.string(commandErrors)} {React.string(commandWarnings)}
+            </div>
+          : <> </>}
       </section>
-      {currentShellTab === "MENU"
-        ? <section className="menu">
-            <ul tabIndex={0}>
-              <li> {React.string("home")} </li>
-              <li> {React.string("boards")} </li>
-              <li> {React.string("help")} </li>
-            </ul>
-            <article id="home-screen" className="shell-screen">
-              <svg viewBox="0 0 125 60" className="sub-title">
-                <text y="20"> {React.string("Welcome To")} </text>
-              </svg>
-              <svg viewBox="0 0 125 40" className="main-title">
-                <text y="15"> {React.string("Kanban Shell")} </text>
-              </svg>
-            </article>
-            <article id="boards-screen" className="shell-screen">
-              <div className="col-container">
-                <div className="col ice-box"> <BoardColumn title="Ice Box" /> </div>
-                <div className="col in-progress"> <BoardColumn title="In Progress" /> </div>
-                <div className="col done"> <BoardColumn title="Done" /> </div>
-              </div>
-            </article>
-            <article id="help-screen" className="shell-screen">
-              <h3> {React.string("Help")} </h3>
-            </article>
-            <div className="legend" />
-          </section>
-        : <> </>}
+      {switch currentShellTab {
+      | MENU => <MenuScreen />
+      | BOARDS => <BoardsScreen />
+      | DEFAULT => <> </>
+      }}
     </main>
   </div>
 }

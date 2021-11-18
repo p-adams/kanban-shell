@@ -2,7 +2,8 @@
 
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as BoardColumn from "./BoardColumn.bs.js";
+import * as MenuScreen from "./MenuScreen.bs.js";
+import * as BoardsScreen from "./BoardsScreen.bs.js";
 
 function App(Props) {
   var match = React.useState(function () {
@@ -18,7 +19,24 @@ function App(Props) {
   var match$2 = React.useState(function () {
         return "";
       });
-  var setCurrentShellTab = match$2[1];
+  var commandWarnings = match$2[0];
+  var match$3 = React.useState(function () {
+        return /* DEFAULT */0;
+      });
+  var setCurrentShellTab = match$3[1];
+  var tmp;
+  switch (match$3[0]) {
+    case /* DEFAULT */0 :
+        tmp = React.createElement(React.Fragment, undefined);
+        break;
+    case /* MENU */1 :
+        tmp = React.createElement(MenuScreen.make, {});
+        break;
+    case /* BOARDS */2 :
+        tmp = React.createElement(BoardsScreen.make, {});
+        break;
+    
+  }
   return React.createElement("div", {
               className: "terminal"
             }, React.createElement("header", undefined, React.createElement("div", undefined, React.createElement("span", {
@@ -39,7 +57,7 @@ function App(Props) {
                                   var match = prompt.toUpperCase();
                                   if (match === "MENU") {
                                     return Curry._1(setCurrentShellTab, (function (param) {
-                                                  return "MENU";
+                                                  return /* MENU */1;
                                                 }));
                                   } else {
                                     return Curry._1(setCommandErrors, (function (param) {
@@ -54,52 +72,15 @@ function App(Props) {
                                   onChange: (function (e) {
                                       Curry._1(setPrompt, e.target.value);
                                       Curry._1(setCurrentShellTab, (function (param) {
-                                              return "";
+                                              return /* DEFAULT */0;
                                             }));
                                       return Curry._1(setCommandErrors, (function (param) {
                                                     return "";
                                                   }));
                                     })
-                                }))), commandErrors.length > 0 ? React.createElement("div", undefined, commandErrors) : React.createElement(React.Fragment, undefined)), match$2[0] === "MENU" ? React.createElement("section", {
-                        className: "menu"
-                      }, React.createElement("ul", {
-                            tabIndex: 0
-                          }, React.createElement("li", undefined, "home"), React.createElement("li", undefined, "boards"), React.createElement("li", undefined, "help")), React.createElement("article", {
-                            className: "shell-screen",
-                            id: "home-screen"
-                          }, React.createElement("svg", {
-                                className: "sub-title",
-                                viewBox: "0 0 125 60"
-                              }, React.createElement("text", {
-                                    y: "20"
-                                  }, "Welcome To")), React.createElement("svg", {
-                                className: "main-title",
-                                viewBox: "0 0 125 40"
-                              }, React.createElement("text", {
-                                    y: "15"
-                                  }, "Kanban Shell"))), React.createElement("article", {
-                            className: "shell-screen",
-                            id: "boards-screen"
-                          }, React.createElement("div", {
-                                className: "col-container"
-                              }, React.createElement("div", {
-                                    className: "col ice-box"
-                                  }, React.createElement(BoardColumn.make, {
-                                        title: "Ice Box"
-                                      })), React.createElement("div", {
-                                    className: "col in-progress"
-                                  }, React.createElement(BoardColumn.make, {
-                                        title: "In Progress"
-                                      })), React.createElement("div", {
-                                    className: "col done"
-                                  }, React.createElement(BoardColumn.make, {
-                                        title: "Done"
-                                      })))), React.createElement("article", {
-                            className: "shell-screen",
-                            id: "help-screen"
-                          }, React.createElement("h3", undefined, "Help")), React.createElement("div", {
-                            className: "legend"
-                          })) : React.createElement(React.Fragment, undefined)));
+                                }))), commandErrors.length > 0 || commandWarnings.length > 0 ? React.createElement("div", {
+                            className: "prompt-feedback"
+                          }, commandErrors, commandWarnings) : React.createElement(React.Fragment, undefined)), tmp));
 }
 
 var make = App;
